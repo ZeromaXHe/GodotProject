@@ -66,6 +66,26 @@ func print_2d_arr(arr: Array) -> void:
 		print(a)
 
 
+func print_board() -> void:
+	var first_line = ""
+	first_line += "     "
+	for j in range(col):
+		first_line += "%3d " % (j + 1)
+	print(first_line)
+	for i in range(row):
+		var line = ""
+		line += "%3d |" % (i + 1)
+		for j in range(col):
+			if sweeped[i][j]:
+				if mines[i][j] == -1:
+					line += " * |"
+				else:
+					line += " %d |" % mines[i][j]
+			else:
+				line += "███|"
+		print(line)
+
+
 func valid(x: int, y: int) -> bool:
 	return x >= 0 and x < row and y >= 0 and y < col
 
@@ -84,3 +104,14 @@ func sweep(x: int, y: int) -> int:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_SubmitButton_pressed():
+	var x = $GUI/LineEditX.text.to_int()
+	var y = $GUI/LineEditY.text.to_int()
+	print("try to sweep x=%d, y=%d" % [x, y])
+	if valid(x, y):
+		sweep(x, y)
+		print_board()
+	else:
+		print("x, y 非法")

@@ -13,6 +13,11 @@ config_version=4
 config/name="GodotProject"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=768
+window/size/height=192
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

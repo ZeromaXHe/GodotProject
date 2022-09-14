@@ -2,5 +2,46 @@
 
 [ext_resource path="res://mine_sweeping.gd" type="Script" id=1]
 
-[node name="Node" type="Node"]
+[node name="MineSweepingController" type="Node"]
 script = ExtResource( 1 )
+
+[node name="GUI" type="Control" parent="."]
+
+[node name="SubmitButton" type="Button" parent="GUI"]
+margin_left = 576.0
+margin_top = 80.0
+margin_right = 704.0
+margin_bottom = 120.0
+text = "submit"
+
+[node name="LineEditX" type="LineEdit" parent="GUI"]
+margin_left = 64.0
+margin_top = 80.0
+margin_right = 256.0
+margin_bottom = 120.0
+
+[node name="LineEditY" type="LineEdit" parent="GUI"]
+margin_left = 320.0
+margin_top = 80.0
+margin_right = 512.0
+margin_bottom = 120.0
+
+[node name="LabelX" type="Label" parent="GUI"]
+margin_left = 128.0
+margin_top = 40.0
+margin_right = 192.0
+margin_bottom = 80.0
+text = "X"
+align = 1
+valign = 1
+
+[node name="LabelY" type="Label" parent="GUI"]
+margin_left = 384.0
+margin_top = 40.0
+margin_right = 448.0
+margin_bottom = 80.0
+text = "Y"
+align = 1
+valign = 1
+
+[connection signal="pressed" from="GUI/SubmitButton" to="." method="_on_SubmitButton_pressed"]
