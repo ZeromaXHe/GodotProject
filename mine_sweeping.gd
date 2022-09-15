@@ -13,20 +13,46 @@ var sweeped_count: int = 0
 var mines: Array
 var sweeped: Array
 var _dirs8: Array = [[-1, 1], [0, 1], [1, 1], [1, 0], [-1, 0], [-1, -1], [0, -1], [1, -1]]
-var _dirs4: Array = [[0, 1], [1, 0], [-1, 0], [0, -1]]
+
+enum GAME_STATUS {FAILED, WON, PLAYING}
+
+var game_status = GAME_STATUS.PLAYING
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	mines = []
-	sweeped = []
+	# 不加的话，貌似每次都是相同的种子
+	randomize()
+	# TODO: 不确定这里二维数组初始化有没有更好的写法？
 	for i in range(row):
 		mines.append([])
 		sweeped.append([])
 		for _j in range(col):
 			mines[i].append(9)
 			sweeped[i].append(false)
-	# init mine positions
+	init_board()
+	print_board()
+	print_2d_arr(mines)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func init_board() -> void:
+	sweeped_count = 0
+	game_status = GAME_STATUS.PLAYING
+	for i in range(row):
+		for j in range(col):
+			mines[i][j] = 9
+			sweeped[i][j] = false
+	init_mine_positions()
+	find_mine_neighbors_and_init()
+	init_emptys()
+
+
+func init_mine_positions() -> void:
 	for _i in range(mine_count):
 		var r = randi() % row
 		var c = randi() % col
@@ -34,16 +60,13 @@ func _ready():
 			r = randi() % row
 			c = randi() % col
 		mines[r][c] = -1
-	# init mine neighbors
+
+
+func find_mine_neighbors_and_init() -> void:
 	for i in range(row):
 		for j in range(col):
 			if mines[i][j] == -1:
 				init_mine_neighbors(i, j)
-	for i in range(row):
-		for j in range(col):
-			if mines[i][j] == 9:
-				mines[i][j] = 0
-	print_2d_arr(mines)
 
 
 func init_mine_neighbors(i: int, j: int) -> void:
@@ -61,12 +84,20 @@ func init_mine_neighbors(i: int, j: int) -> void:
 			mines[ni][nj] = count
 
 
+func init_emptys() -> void:
+	for i in range(row):
+		for j in range(col):
+			if mines[i][j] == 9:
+				mines[i][j] = 0
+
+
 func print_2d_arr(arr: Array) -> void:
 	for a in arr:
 		print(a)
 
 
 func print_board() -> void:
+	# TODO: 不确定这里有没有类似 StringBuilder 的优化？
 	var first_line = ""
 	first_line += "     "
 	for j in range(col):
@@ -90,28 +121,47 @@ func valid(x: int, y: int) -> bool:
 	return x >= 0 and x < row and y >= 0 and y < col
 
 
-func sweep(x: int, y: int) -> int:
+func sweep(x: int, y: int) -> void:
 	sweeped[x][y] = true
+	if mines[x][y] == -1:
+		game_status = GAME_STATUS.FAILED
+		print("Sorry, this is a mine! You lose")
+		return
+	sweeped_count += 1
 	if mines[x][y] == 0:
 		for dir in _dirs8:
 			var nx = x + dir[0]
 			var ny = y + dir[1]
 			if valid(nx, ny) and not sweeped[nx][ny]:
 				sweep(nx, ny)
-	return mines[x][y]
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	if sweeped_count + mine_count == row * col:
+		game_status = GAME_STATUS.WON
+		print("Congratulations! You cleared the mine field!")
 
 
 func _on_SubmitButton_pressed():
+	if game_status == GAME_STATUS.WON:
+		print("You have won, please restart")
+		return
+	if game_status == GAME_STATUS.FAILED:
+		print("You have failed, please restart")
+		return
 	var x = $GUI/LineEditX.text.to_int()
 	var y = $GUI/LineEditY.text.to_int()
 	print("try to sweep x=%d, y=%d" % [x, y])
-	if valid(x, y):
-		sweep(x, y)
+	if valid(x - 1, y - 1):
+		if sweeped[x - 1][y - 1]:
+			print("[%d, %d] is sweeped, please choose another area" % [x, y])
+			return
+		sweep(x - 1, y - 1)
 		print_board()
 	else:
-		print("x, y 非法")
+		print("x, y not legal")
+
+
+func _on_RestartButton_pressed():
+	init_board()
+	print_board()
+	print_2d_arr(mines)
+	print("game restarted...")
+

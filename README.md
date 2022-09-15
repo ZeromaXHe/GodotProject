@@ -15,3 +15,15 @@ Q 选择工具
 V 修改旋转轴（pivot）—— 其实就是属性里面的 offset
 
 F 使选择对象居中
+
+# TODO
+
+Tetris
+
+Snake (TileMap)
+
+Flappy Bird (Physics)
+
+3D Pinball (Physics)
+
+Shooting Game
