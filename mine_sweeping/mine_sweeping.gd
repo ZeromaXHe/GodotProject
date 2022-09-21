@@ -12,6 +12,7 @@ export var mine_count: int = 10
 var sweeped_count: int = 0
 var mines: Array
 var sweeped: Array
+var buttons: Array
 var _dirs8: Array = [[-1, 1], [0, 1], [1, 1], [1, 0], [-1, 0], [-1, -1], [0, -1], [1, -1]]
 
 enum GAME_STATUS {FAILED, WON, PLAYING}
@@ -33,6 +34,7 @@ func _ready():
 	init_board()
 	print_board()
 	print_2d_arr(mines)
+	init_buttons()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -91,6 +93,21 @@ func init_emptys() -> void:
 				mines[i][j] = 0
 
 
+func init_buttons() -> void:
+	buttons = []
+	buttons.resize(row)
+	for i in range(row):
+		buttons[i] = []
+		buttons[i].resize(col)
+		for j in range(col):
+			var btn: Button = Button.new()
+			btn.rect_size = Vector2(50, 50)
+			btn.rect_position = Vector2(100 + 50 * i, 200 + 50 * j)
+			btn.connect("pressed", self, "sweep", [i, j])
+			buttons[i][j] = btn
+			add_child(btn)
+
+
 func print_2d_arr(arr: Array) -> void:
 	for a in arr:
 		print(a)
@@ -123,12 +140,21 @@ func valid(x: int, y: int) -> bool:
 
 func sweep(x: int, y: int) -> void:
 	sweeped[x][y] = true
-	if mines[x][y] == -1:
+	# 按钮更新
+	var btn: Button = buttons[x][y]
+	btn.disabled = true
+	if(mines[x][y] > 0):
+		btn.text = String(mines[x][y])
+		sweeped_count += 1
+	elif mines[x][y] == -1:
+		btn.icon = load("res://icon.png")
 		game_status = GAME_STATUS.FAILED
 		print("Sorry, this is a mine! You lose")
 		return
-	sweeped_count += 1
-	if mines[x][y] == 0:
+	else:
+		sweeped_count += 1
+		btn.modulate = Color(1, 1, 1, 1)
+		# dfs
 		for dir in _dirs8:
 			var nx = x + dir[0]
 			var ny = y + dir[1]
@@ -163,5 +189,6 @@ func _on_RestartButton_pressed():
 	init_board()
 	print_board()
 	print_2d_arr(mines)
+	init_buttons()
 	print("game restarted...")
 

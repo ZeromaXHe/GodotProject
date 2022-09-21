@@ -2,54 +2,53 @@
 
 [ext_resource path="res://mine_sweeping/mine_sweeping.gd" type="Script" id=1]
 
-
 [node name="MineSweepingController" type="Node"]
 script = ExtResource( 1 )
 
 [node name="GUI" type="Control" parent="."]
 
 [node name="SubmitButton" type="Button" parent="GUI"]
-margin_left = 576.0
+margin_left = 608.0
 margin_top = 72.0
-margin_right = 704.0
+margin_right = 736.0
 margin_bottom = 120.0
 text = "Submit"
 
 [node name="LineEditX" type="LineEdit" parent="GUI"]
-margin_left = 64.0
+margin_left = 96.0
 margin_top = 72.0
-margin_right = 256.0
+margin_right = 288.0
 margin_bottom = 120.0
 
 [node name="LineEditY" type="LineEdit" parent="GUI"]
-margin_left = 320.0
+margin_left = 352.0
 margin_top = 72.0
-margin_right = 512.0
+margin_right = 544.0
 margin_bottom = 120.0
 
 [node name="LabelX" type="Label" parent="GUI"]
-margin_left = 128.0
+margin_left = 160.0
 margin_top = 32.0
-margin_right = 192.0
+margin_right = 224.0
 margin_bottom = 72.0
 text = "X"
 align = 1
 valign = 1
 
 [node name="LabelY" type="Label" parent="GUI"]
-margin_left = 384.0
+margin_left = 416.0
 margin_top = 32.0
-margin_right = 448.0
+margin_right = 480.0
 margin_bottom = 72.0
 text = "Y"
 align = 1
 valign = 1
 
 [node name="RestartButton" type="Button" parent="GUI"]
-margin_left = 576.0
-margin_top = 136.0
-margin_right = 704.0
-margin_bottom = 184.0
+margin_left = 800.0
+margin_top = 72.0
+margin_right = 928.0
+margin_bottom = 120.0
 text = "Restart"
 
 [connection signal="pressed" from="GUI/SubmitButton" to="." method="_on_SubmitButton_pressed"]
