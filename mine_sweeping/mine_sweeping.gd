@@ -21,7 +21,7 @@ var game_status = GAME_STATUS.PLAYING
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	# 不加的话，貌似每次都是相同的种子
 	randomize()
 	# TODO: 不确定这里二维数组初始化有没有更好的写法？
@@ -103,7 +103,7 @@ func init_buttons() -> void:
 			var btn: Button = Button.new()
 			btn.rect_size = Vector2(50, 50)
 			btn.rect_position = Vector2(100 + 50 * i, 200 + 50 * j)
-			btn.connect("pressed", self, "sweep", [i, j])
+			btn.connect("pressed", self, "_on_GeneratedButton_pressed", [i, j])
 			buttons[i][j] = btn
 			add_child(btn)
 
@@ -165,7 +165,7 @@ func sweep(x: int, y: int) -> void:
 		print("Congratulations! You cleared the mine field!")
 
 
-func _on_SubmitButton_pressed():
+func _on_SubmitButton_pressed() -> void:
 	if game_status == GAME_STATUS.WON:
 		print("You have won, please restart")
 		return
@@ -185,10 +185,20 @@ func _on_SubmitButton_pressed():
 		print("x, y not legal")
 
 
-func _on_RestartButton_pressed():
+func _on_RestartButton_pressed() -> void:
 	init_board()
 	print_board()
 	print_2d_arr(mines)
 	init_buttons()
 	print("game restarted...")
+
+
+func _on_GeneratedButton_pressed(x: int, y: int) -> void:
+	if game_status == GAME_STATUS.WON:
+		print("You have won, please restart")
+		return
+	if game_status == GAME_STATUS.FAILED:
+		print("You have failed, please restart")
+		return
+	sweep(x, y)
 
