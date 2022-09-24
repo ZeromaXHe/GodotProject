@@ -22,9 +22,9 @@ var game_status = GAME_STATUS.PLAYING
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# 不加的话，貌似每次都是相同的种子
+	# 不加的话，每次都是相同的种子
 	randomize()
-	# TODO: 不确定这里二维数组初始化有没有更好的写法？
+	# 二维数组初始化的一种写法
 	for i in range(row):
 		mines.append([])
 		sweeped.append([])
@@ -94,6 +94,7 @@ func init_emptys() -> void:
 
 
 func init_buttons() -> void:
+	# 二维数组初始化的另一种写法
 	buttons = []
 	buttons.resize(row)
 	for i in range(row):
@@ -103,6 +104,7 @@ func init_buttons() -> void:
 			var btn: Button = Button.new()
 			btn.rect_size = Vector2(50, 50)
 			btn.rect_position = Vector2(100 + 50 * i, 200 + 50 * j)
+			# 绑定按钮 pressed 信号
 			btn.connect("pressed", self, "_on_GeneratedButton_pressed", [i, j])
 			buttons[i][j] = btn
 			add_child(btn)

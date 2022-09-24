@@ -82,3 +82,7 @@ Flappy Bird (Physics)
 3D Pinball (Physics)
 
 Shooting Game
+
+# 资源声明
+
+使用的 SourceHanSansCN-Normal.ttf 文件为 [思源黑体](https://github.com/adobe-fonts/source-han-sans) 开源字体，基于 OFL-1.1 协议开源。
