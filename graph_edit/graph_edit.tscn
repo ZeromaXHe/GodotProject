@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/chinese_font_theme.tres" type="Theme" id=1]
+[ext_resource path="res://graph_edit/main.gd" type="Script" id=2]
+[ext_resource path="res://graph_edit/popup.tscn" type="PackedScene" id=3]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 64.0
+right_disconnects = true
+
+[node name="ButtonAdd" type="Button" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 120.0
+margin_bottom = 56.0
+text = "添加节点"
+
+[node name="ButtonCalc" type="Button" parent="."]
+margin_left = 138.0
+margin_top = 8.0
+margin_right = 248.0
+margin_bottom = 56.0
+text = "计算"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 272.0
+margin_top = 8.0
+margin_right = 376.0
+margin_bottom = 56.0
+text = "结果："
+align = 1
+valign = 1
+
+[node name="PanelPopup" parent="." instance=ExtResource( 3 )]
+visible = false
+margin_left = -152.0
+margin_right = -2.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[connection signal="connection_request" from="GraphEdit" to="." method="_on_GraphEdit_connection_request"]
+[connection signal="copy_nodes_request" from="GraphEdit" to="." method="_on_GraphEdit_copy_nodes_request"]
+[connection signal="delete_nodes_request" from="GraphEdit" to="." method="_on_GraphEdit_delete_nodes_request"]
+[connection signal="disconnection_request" from="GraphEdit" to="." method="_on_GraphEdit_disconnection_request"]
+[connection signal="duplicate_nodes_request" from="GraphEdit" to="." method="_on_GraphEdit_duplicate_nodes_request"]
+[connection signal="paste_nodes_request" from="GraphEdit" to="." method="_on_GraphEdit_paste_nodes_request"]
+[connection signal="popup_request" from="GraphEdit" to="." method="_on_GraphEdit_popup_request"]
+[connection signal="pressed" from="ButtonAdd" to="." method="_on_ButtonAdd_pressed"]
+[connection signal="pressed" from="ButtonCalc" to="." method="_on_ButtonCalc_pressed"]
+[connection signal="pressed" from="PanelPopup/VBoxContainer/ButtonCopy" to="." method="_on_GraphEdit_copy_nodes_request"]
+[connection signal="pressed" from="PanelPopup/VBoxContainer/ButtonPaste" to="." method="_on_GraphEdit_paste_nodes_request"]
+[connection signal="pressed" from="PanelPopup/VBoxContainer/ButtonDuplicate" to="." method="_on_GraphEdit_duplicate_nodes_request"]
+[connection signal="pressed" from="PanelPopup/VBoxContainer/ButtonDelete" to="." method="_on_ButtonDelete_pressed"]
+
+[editable path="PanelPopup"]
