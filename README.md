@@ -86,3 +86,7 @@ Shooting Game
 # 资源声明
 
 使用的 SourceHanSansCN-Normal.ttf 文件为 [思源黑体](https://github.com/adobe-fonts/source-han-sans) 开源字体，基于 OFL-1.1 协议开源。
+
+使用的 unifont-15.0.01.ttf 文件为 [GNU Unifont](http://unifoundry.com/unifont/index.html) 开源字体，基于 GNU GPL 2.0 和 OFL 1.1 协议开源
+
+以上版权归原公司或团体所有
