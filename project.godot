@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "HexMap",
+"language": "GDScript",
+"path": "res://civ_like/hex_map.gd"
+}, {
+"base": "Node",
+"class": "HexUtils",
+"language": "GDScript",
+"path": "res://civ_like/hex_utils.gd"
+}, {
+"base": "Node",
+"class": "MapNode",
+"language": "GDScript",
+"path": "res://civ_like/map_node.gd"
+} ]
+_global_script_class_icons={
+"HexMap": "",
+"HexUtils": "",
+"MapNode": ""
+}
+
 [application]
 
 config/name="GodotProject"
