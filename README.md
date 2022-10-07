@@ -85,8 +85,22 @@ Shooting Game
 
 # 资源声明
 
-使用的 SourceHanSansCN-Normal.ttf 文件为 [思源黑体](https://github.com/adobe-fonts/source-han-sans) 开源字体，基于 OFL-1.1 协议开源。
+fonts 文件夹中：
 
-使用的 unifont-15.0.01.ttf 文件为 [GNU Unifont](http://unifoundry.com/unifont/index.html) 开源字体，基于 GNU GPL 2.0 和 OFL 1.1 协议开源
+使用的 `SourceHanSansCN-Normal.ttf` 文件为 [思源黑体](https://github.com/adobe-fonts/source-han-sans) 开源字体，基于 OFL-1.1 协议开源。
 
-以上版权归原公司或团体所有
+使用的 `unifont-15.0.01.ttf` 文件为 [GNU Unifont](http://unifoundry.com/unifont/index.html) 开源字体，基于 GNU GPL 2.0 和 OFL 1.1 协议开源
+
+platformer\assets 文件夹中：
+
+使用的 `platformerPack_character.png` 和 `platformPack_tilesheet.png` 文件来自于 Kenney 的 [Simplified Platformer Pack](https://www.kenney.nl/assets/simplified-platformer-pack)， 基于 CC0 1.0 Universal 协议，可以免费用于个人项目与商用
+
+使用的 `cloudLayer1.png`、`cloudLayer2.png` 和 `mountains.png` 文件来自于 Kenney 的 [Background Elements Redux](https://www.kenney.nl/assets/background-elements-redux)， 基于 CC0 1.0 Universal 协议，可以免费用于个人项目与商用
+
+使用的 `gold.png` 文件 (1 ~ 4) 来自于 Kenney 的 [Jumper Pack](https://www.kenney.nl/assets/jumper-pack)， 基于 CC0 1.0 Universal 协议，可以免费用于个人项目与商用
+
+使用的 `enemies.png` 文件来自于 Kenney 的 [Platformer Pack Redux](https://www.kenney.nl/assets/platformer-pack-redux)， 基于 CC0 1.0 Universal 协议，可以免费用于个人项目与商用
+
+使用的 `toggle_002.ogg` 文件来自于 Kenney 的 [Interface Sounds](https://www.kenney.nl/assets/interface-sounds)， 基于 CC0 1.0 Universal 协议，可以免费用于个人项目与商用
+
+以上版权归原公司或团体所有，也向他们表示感谢~
