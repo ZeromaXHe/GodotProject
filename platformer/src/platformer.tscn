@@ -103,6 +103,14 @@ __meta__ = {
 "_edit_vertical_guides_": [ -64.0, 2560.0 ]
 }
 
+[node name="BackgroundColor" type="ColorRect" parent="."]
+visible = false
+margin_left = -480.0
+margin_top = -992.0
+margin_right = 2680.0
+margin_bottom = 584.0
+color = Color( 0.811765, 0.937255, 0.988235, 1 )
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 format = 1
