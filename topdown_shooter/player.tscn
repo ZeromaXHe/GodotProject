@@ -20,10 +20,14 @@ color = Color( 0, 0.462745, 1, 1 )
 wait_time = 0.1
 one_shot = true
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 1 )
 
+[node name="PowerUpCooldown" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
+[connection signal="timeout" from="PowerUpCooldown" to="." method="_on_PowerUpCooldown_timeout"]

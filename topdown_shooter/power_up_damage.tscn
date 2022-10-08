@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://topdown_shooter/power_up_reload.tscn" type="PackedScene" id=1]
+
+[node name="PowerUpDamage" instance=ExtResource( 1 )]
+player_variable_modify = "damage"
+player_variable_set = 2.0

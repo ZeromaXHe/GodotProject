@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://topdown_shooter/enemy.tscn" type="PackedScene" id=1]
+
+[node name="Enemy" instance=ExtResource( 1 )]
+speed = 140
+hp = 1
+knockback = 1200
+screen_shake = 90
+point_value = 20
+
+[node name="ColorRect" parent="." index="0"]
+color = Color( 1, 0.772549, 0, 1 )
