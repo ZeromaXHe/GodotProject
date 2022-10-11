@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://platformer/assets/platformPack_tilesheet.png" type="Texture" id=1]
 [ext_resource path="res://platformer/assets/cloudLayer2.png" type="Texture" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://platformer/src/coin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://platformer/src/enemies/slime.tscn" type="PackedScene" id=8]
 [ext_resource path="res://platformer/src/enemy_spawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://platformer/src/enemies/fly.tscn" type="PackedScene" id=10]
+[ext_resource path="res://platformer/src/world.gd" type="Script" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -98,18 +100,11 @@ tracks/0/keys = {
 }
 
 [node name="World" type="Node2D"]
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 88.0 ],
 "_edit_vertical_guides_": [ -64.0, 2560.0 ]
 }
-
-[node name="BackgroundColor" type="ColorRect" parent="."]
-visible = false
-margin_left = -480.0
-margin_top = -992.0
-margin_right = 2680.0
-margin_bottom = 584.0
-color = Color( 0.811765, 0.937255, 0.988235, 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
@@ -210,16 +205,26 @@ position = Vector2( 1584, -48 )
 
 [node name="Slime" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 776, 243 )
-dead = false
 
 [node name="Slime2" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 384, 328 )
 direction = 1
-dead = false
 
 [node name="EnemySpawner" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 504, 208 )
 enemy_scene = ExtResource( 8 )
 interval = 3.0
+
+[node name="Fly" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 392, 235 )
+
+[node name="Fly2" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 888, 320 )
+
+[node name="Fly3" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 1336, 195 )
+
+[node name="Fly4" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 2064, 112 )
 
 [editable path="TileMap/MovingPlatform2"]

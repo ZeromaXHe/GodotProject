@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/slime_dead.ogg-ec0600c91ab7bfdb1e0e1fa9af60ec12.oggstr"
+
+[deps]
+
+source_file="res://platformer/assets/audio/slime_dead.ogg"
+dest_files=[ "res://.import/slime_dead.ogg-ec0600c91ab7bfdb1e0e1fa9af60ec12.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

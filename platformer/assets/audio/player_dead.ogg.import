@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/player_dead.ogg-070e2badf0c4eea9bc6c8edaaa4f5e37.oggstr"
+
+[deps]
+
+source_file="res://platformer/assets/audio/player_dead.ogg"
+dest_files=[ "res://.import/player_dead.ogg-070e2badf0c4eea9bc6c8edaaa4f5e37.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

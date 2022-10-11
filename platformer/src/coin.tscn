@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://platformer/src/coin.gd" type="Script" id=1]
-[ext_resource path="res://platformer/assets/toggle_002.ogg" type="AudioStream" id=2]
+[ext_resource path="res://platformer/assets/audio/coin_picked.ogg" type="AudioStream" id=2]
 [ext_resource path="res://platformer/assets/gold_2.png" type="Texture" id=3]
 [ext_resource path="res://platformer/assets/gold_3.png" type="Texture" id=4]
 [ext_resource path="res://platformer/assets/gold_4.png" type="Texture" id=5]
@@ -250,5 +250,6 @@ shape = SubResource( 4 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]

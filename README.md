@@ -101,6 +101,8 @@ platformer\assets 文件夹中：
 
 使用的 `enemies.png` 文件来自于 Kenney 的 [Platformer Pack Redux](https://www.kenney.nl/assets/platformer-pack-redux)， 基于 CC0 1.0 Universal 协议，可以免费用于个人项目与商用
 
-使用的 `toggle_002.ogg` 文件来自于 Kenney 的 [Interface Sounds](https://www.kenney.nl/assets/interface-sounds)， 基于 CC0 1.0 Universal 协议，可以免费用于个人项目与商用
+platformer\assets\audio 文件夹中：
+
+使用的 `coin_picked.ogg`（原名 `toggle_002.ogg`）、`fly_dead.ogg`（原名 `close_001.ogg`）、`jump.ogg`（原名 `bong_001.ogg`）、`player_dead.ogg`（原名 `question_001.ogg`）、`slime_dead.ogg`（原名 `drop_001.ogg`） 文件来自于 Kenney 的 [Interface Sounds](https://www.kenney.nl/assets/interface-sounds)， 基于 CC0 1.0 Universal 协议，可以免费用于个人项目与商用
 
 以上版权归原公司或团体所有，也向他们表示感谢~

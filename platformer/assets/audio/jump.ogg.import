@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/jump.ogg-b054201998542c8620828d330434e8fe.oggstr"
+
+[deps]
+
+source_file="res://platformer/assets/audio/jump.ogg"
+dest_files=[ "res://.import/jump.ogg-b054201998542c8620828d330434e8fe.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

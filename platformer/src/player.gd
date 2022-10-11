@@ -6,6 +6,8 @@ const air_acceleration = max_speed / 0.05
 const gravity = 2000
 const jump_force = 800
 
+export var dead = false
+
 var velocity = Vector2.ZERO
 var jumping = false
 
@@ -13,9 +15,11 @@ onready var animation_player = $AnimationPlayer
 onready var sprite = $Sprite
 onready var coyote_timer = $CoyoteTimer
 onready var jump_request_timer = $JumpRequestTimer
-
+onready var jump_sound = $JumpSound
 
 func _input(event: InputEvent) -> void:
+	if dead:
+		return
 	if event.is_action_pressed("jump"):
 		jump_request_timer.start()
 	# 大跳和小跳
@@ -35,9 +39,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(delta: float) -> void:
+	velocity.y += gravity * delta
+	
+	if dead:
+		return
+	
 	var direction = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var acc = acceleration if is_on_floor() else air_acceleration
-	velocity.y += gravity * delta
 	velocity.x = move_toward(velocity.x, direction * max_speed, acc * delta)
 	
 	var can_jump = is_on_floor() or coyote_timer.time_left > 0
@@ -46,6 +54,7 @@ func _process(delta: float) -> void:
 		jumping = true
 		jump_request_timer.stop()
 		coyote_timer.stop()
+		jump_sound.play()
 	
 	if jumping:
 		animation_player.play("Jump")
@@ -58,7 +67,9 @@ func _process(delta: float) -> void:
 
 
 func _on_HurtBox_hurt() -> void:
-	get_tree().reload_current_scene()
+	velocity.y = -jump_force
+	animation_player.play("Death")
+	PlatformerGlobals.reload_world()
 
 
 func _on_Hitbox_hit() -> void:

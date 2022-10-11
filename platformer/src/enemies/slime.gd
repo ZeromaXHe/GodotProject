@@ -2,12 +2,7 @@ extends "res://platformer/src/enemies/enemy.gd"
 
 enum Direction {LEFT = -1, RIGHT = 1}
 
-const max_speed = 50
-const acceleration = max_speed / 0.2
-
-var velocity = Vector2.ZERO
 export(Direction) var direction = Direction.LEFT
-export var dead = false
 
 
 func _physics_process(delta: float) -> void:
