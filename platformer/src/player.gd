@@ -4,7 +4,7 @@ const max_speed = 350
 const acceleration = max_speed / 0.2
 const air_acceleration = max_speed / 0.05
 const gravity = 2000
-const jump_force = 800
+const jump_force = 880
 
 export var dead = false
 
@@ -17,7 +17,7 @@ onready var coyote_timer = $CoyoteTimer
 onready var jump_request_timer = $JumpRequestTimer
 onready var jump_sound = $JumpSound
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if dead:
 		return
 	if event.is_action_pressed("jump"):
@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 	sprite.flip_h = direction < 0
 
 
-func _on_HurtBox_hurt() -> void:
+func _on_HurtBox_hurt(_hitbox) -> void:
 	velocity.y = -jump_force
 	animation_player.play("Death")
 	PlatformerGlobals.reload_world()

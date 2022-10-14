@@ -14,8 +14,15 @@ onready var sprite: Sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 
 
-func _on_HurtBox_hurt() -> void:
-	if animation_player.has_animation("Death"):
+func _on_HurtBox_hurt(hitbox) -> void:
+	if not hitbox.instant_kill and animation_player.has_animation("Death"):
 		animation_player.play("Death")
 	else:
 		queue_free()
+
+
+func _on_VisibilityEnabler2D_viewport_entered(_viewport: Viewport) -> void:
+	var enabler = $VisibilityEnabler2D
+	enabler.process_parent = false
+	enabler.physics_process_parent = false
+	enabler.pause_animations = false
