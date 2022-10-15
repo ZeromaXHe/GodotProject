@@ -1,6 +1,5 @@
 extends Control
 
-onready var background = $DayBackground
 onready var transitions = $UI/Menus/Transitions
 onready var sfx_button = $UI/Menus/OptionsMenu/SFXButton
 
@@ -9,10 +8,6 @@ export var scroll_velocity = -30.0
 
 func _ready() -> void:
 	_update_buttons()
-
-
-func _process(delta: float) -> void:
-	background.scroll_offset.x += scroll_velocity * delta
 
 
 func _on_BackButton_pressed() -> void:
@@ -25,6 +20,7 @@ func _on_OptionsButton_pressed() -> void:
 
 func _on_SFXButton_pressed() -> void:
 	PlatformerGlobals.sfx_enabled = not PlatformerGlobals.sfx_enabled
+	PlatformerGlobals.save_config()
 	_update_buttons()
 
 

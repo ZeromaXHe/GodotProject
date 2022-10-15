@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://platformer/src/day_background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://platformer/src/ui_background.gd" type="Script" id=2]
+
+[node name="UIBackground" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="CloudLayer1" parent="ParallaxLayer" index="0"]
+position = Vector2( 512, 152 )
+
+[node name="CloudLayer2" parent="ParallaxLayer2" index="0"]
+position = Vector2( 512, 392 )
+
+[node name="Mountains" parent="ParallaxLayer3" index="0"]
+position = Vector2( 512, 568 )

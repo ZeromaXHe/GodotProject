@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://fonts/SourceHanSansCN-Normal.ttf" type="DynamicFontData" id=1]
+
+[resource]
+size = 64
+outline_size = 4
+outline_color = Color( 0.839216, 0.509804, 0.160784, 0.776471 )
+extra_spacing_char = 48
+font_data = ExtResource( 1 )

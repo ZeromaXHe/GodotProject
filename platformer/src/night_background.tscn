@@ -4,12 +4,12 @@
 [ext_resource path="res://platformer/assets/cloudLayer1.png" type="Texture" id=2]
 [ext_resource path="res://platformer/assets/cloudLayer2.png" type="Texture" id=3]
 
-[node name="DayBackground" type="ParallaxBackground"]
+[node name="NightBackground" type="ParallaxBackground"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.811765, 0.937255, 0.988235, 1 )
+color = Color( 0.109804, 0.117647, 0.192157, 1 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 motion_scale = Vector2( 0.2, 0.2 )
@@ -20,6 +20,7 @@ __meta__ = {
 }
 
 [node name="CloudLayer1" type="Sprite" parent="ParallaxLayer"]
+modulate = Color( 0.054902, 0.0862745, 0.243137, 1 )
 position = Vector2( 512, 40 )
 texture = ExtResource( 2 )
 
@@ -32,6 +33,7 @@ __meta__ = {
 }
 
 [node name="CloudLayer2" type="Sprite" parent="ParallaxLayer2"]
+modulate = Color( 0.101961, 0.14902, 0.4, 1 )
 position = Vector2( 512, 168 )
 texture = ExtResource( 3 )
 
@@ -44,5 +46,6 @@ __meta__ = {
 }
 
 [node name="Mountains" type="Sprite" parent="ParallaxLayer3"]
+modulate = Color( 0, 0.0823529, 0.207843, 1 )
 position = Vector2( 512, 320 )
 texture = ExtResource( 1 )

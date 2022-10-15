@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=6 format=2]
+[gd_resource type="Theme" load_steps=7 format=2]
 
-[ext_resource path="res://platformer/assets/ui/fonts/main_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/SourceHanSansCN-Normal.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -10,8 +10,15 @@
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
+[sub_resource type="DynamicFont" id=5]
+size = 28
+outline_size = 3
+outline_color = Color( 0.337255, 0.529412, 0.611765, 0.776471 )
+extra_spacing_char = 28
+font_data = ExtResource( 1 )
+
 [resource]
-default_font = ExtResource( 1 )
+default_font = SubResource( 5 )
 Button/colors/font_color = Color( 0.85, 0.85, 0.85, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_focus = Color( 0.94, 0.94, 0.94, 1 )

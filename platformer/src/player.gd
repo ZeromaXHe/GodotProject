@@ -16,6 +16,7 @@ onready var sprite = $Sprite
 onready var coyote_timer = $CoyoteTimer
 onready var jump_request_timer = $JumpRequestTimer
 onready var jump_sound = $JumpSound
+onready var tween = $Tween
 
 func _unhandled_input(event: InputEvent) -> void:
 	if dead:
@@ -34,6 +35,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		# print("on floor" + str(Time.get_ticks_msec()))
 		jumping = false
+		if not was_on_floor:
+			_tween_scale(Vector2(1.25, 0.8))
 	elif was_on_floor and not jumping:
 		coyote_timer.start()
 
@@ -66,6 +69,18 @@ func _process(delta: float) -> void:
 	sprite.flip_h = direction < 0
 
 
+func _tween_scale(target):
+	tween.interpolate_property(
+		sprite, "scale", null, target, 0.05,
+		Tween.TRANS_SINE,Tween.EASE_IN_OUT
+	)
+	tween.interpolate_property(
+		sprite, "scale", target, Vector2.ONE, 0.1,
+		Tween.TRANS_SINE,Tween.EASE_IN_OUT, 0.05
+	)
+	tween.start()
+
+
 func _on_HurtBox_hurt(_hitbox) -> void:
 	velocity.y = -jump_force
 	animation_player.play("Death")
@@ -74,3 +89,26 @@ func _on_HurtBox_hurt(_hitbox) -> void:
 
 func _on_Hitbox_hit() -> void:
 	velocity.y = -jump_force / 2
+	if not is_on_floor():
+		_tween_scale(Vector2(1.25, 0.8))
+
+
+func _on_TrailTimer_timeout() -> void:
+	if velocity.x == 0:
+		return
+	var trail = preload("res://platformer/src/effects/trail.tscn").instance()
+	get_parent().add_child(trail)
+	get_parent().move_child(trail, get_index())
+	
+	var properties = [
+		"hframes",
+		"vframes",
+		"frame",
+		"texture",
+		"global_position",
+		"flip_h",
+		"offset",
+		"scale"
+	]
+	for name in properties:
+		trail.set(name, sprite.get(name))

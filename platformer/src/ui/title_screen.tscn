@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://platformer/src/ui/main_theme.tres" type="Theme" id=2]
+[ext_resource path="res://platformer/assets/ui/main_theme.tres" type="Theme" id=2]
 [ext_resource path="res://platformer/src/ui/title_screen.gd" type="Script" id=3]
-[ext_resource path="res://platformer/src/day_background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://platformer/src/ui_background.tscn" type="PackedScene" id=4]
 [ext_resource path="res://platformer/src/ui/click_sound.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
@@ -70,6 +70,8 @@ tracks/1/keys = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
+
+[node name="UIBackground" parent="." instance=ExtResource( 4 )]
 
 [node name="UI" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -164,26 +166,6 @@ text = "返回"
 [node name="Transitions" type="AnimationPlayer" parent="UI/Menus"]
 anims/ShowOptions = SubResource( 4 )
 
-[node name="DayBackground" parent="." instance=ExtResource( 4 )]
-
-[node name="ParallaxLayer" parent="DayBackground" index="0"]
-motion_scale = Vector2( 0.2, 1 )
-
-[node name="CloudLayer1" parent="DayBackground/ParallaxLayer" index="0"]
-position = Vector2( 512, 144 )
-
-[node name="ParallaxLayer2" parent="DayBackground" index="1"]
-motion_scale = Vector2( 0.4, 1 )
-
-[node name="CloudLayer2" parent="DayBackground/ParallaxLayer2" index="0"]
-position = Vector2( 512, 384 )
-
-[node name="ParallaxLayer3" parent="DayBackground" index="2"]
-motion_scale = Vector2( 0.6, 1 )
-
-[node name="Mountains" parent="DayBackground/ParallaxLayer3" index="0"]
-position = Vector2( 512, 572 )
-
 [node name="ClickSound" parent="." instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="UI/Menus/MainMenu/StartButton" to="." method="_on_StartButton_pressed"]
@@ -191,5 +173,3 @@ position = Vector2( 512, 572 )
 [connection signal="pressed" from="UI/Menus/MainMenu/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="UI/Menus/OptionsMenu/SFXButton" to="." method="_on_SFXButton_pressed"]
 [connection signal="pressed" from="UI/Menus/OptionsMenu/BackButton" to="." method="_on_BackButton_pressed"]
-
-[editable path="DayBackground"]
